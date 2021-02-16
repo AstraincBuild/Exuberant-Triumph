@@ -1,12 +1,12 @@
 ## Automated ELK Stack Deployment
 
-The files in this repository were used to configure the network depicted below.
+The files in this repository were used to configure the network shown below.
 
 [Network Diagram](Network-Azure.drawio)
 
-These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the file may be used to install only certain pieces of it, such as Filebeat.
+After beeing tested, these files were used to generate a live ELK deployment on an Microsoft Azure network, through a Jumpbox provisioner with an Ansible container. These files can be used to recreate the entire deployment pictured above or to install certain pieces of it, such as Filebeat.
 
-[Elk-Docker Configuration file] (Ansible)
+[Docker Configuration file] (Ansible/Config-Elk-w-Docker)
 
 This document contains the following details:
 - Description of the Topology
@@ -19,16 +19,21 @@ This document contains the following details:
 
 ### Description of the Topology
 
-The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
+The main purpose of this network is to expose a load-balanced and monitored example of D*mn Vulnerable Web Application (DVWA). A load balancer was used to distribute web traffic across different servers, which logs can be monitored through an ELK monitoring stack within a separate virtual network (VNet).
 
-Load balancing ensures that the application will be highly _____, in addition to restricting _____ to the network.
+Load balancing ensures that the application will be highly available, in addition to restricting inbond access to the network.
+    An LB provides an external IP address (accessed by the internet) to a website. After receiving traffic, the LB distributes it across multiple servers, which can be expanded as the need arises, helping distribute traffic evenly among the servers to minimize the effects of possible Denial of Service (DoS) attacks. An LB has also a "health probe" that regularly checks the web servers' functionality, before sending traffic to them - issues with a server will be reported and traffic to it will be halted. Although the system could still become overwhelmed with traffic, it is much more effective than a single server running the website.
 - _TODO: What aspect of security do load balancers protect? What is the advantage of a jump box?_
 
-Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the _____ and system _____.
+Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the file names and watch system metrics through monitors like Filebeat and Metricbeat. These monitors automate functions that tends to be too tedius and innefective, if done mannually by a system administrator. 
+    The Filebeat monitors the logs in the specified location, detects changes to the filesystem, collects logs, and forwards them to Elastisearch or Logstash for indexing.
+    The Metricbeat detects changes in the system, such as CPU usage and SSH login attempts.
+    By installing a Filebeat monitor, 
 - _TODO: What does Filebeat watch for?_
 - _TODO: What does Metricbeat record?_
 
 The configuration details of each machine may be found below.
+
 _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
 
 | Name     | Function | IP Address | Operating System |
