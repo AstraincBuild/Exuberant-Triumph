@@ -2,7 +2,7 @@
 
 The files in this repository were used to configure the network shown below.
 
-![Network Diagram](Images/Network-Azure.png)
+![Network Diagram](Network-Azure.png)
 
 After beeing tested, these files were used to generate a live ELK deployment on an Microsoft Azure network, through a Jumpbox provisioner with an Ansible container. These files can be used to recreate the entire deployment pictured above or to install certain pieces of it, such as Filebeat.
 
@@ -131,10 +131,10 @@ We installed Filebeat and Metricbeat to monitor the  the webserver machines:
 ### Configuring Files and Using Playbooks for Monitoring Services
 In order to use the playbooks and install Filebeat and Metricbeat monitoring services, you will need to have an Ansible control node already configured, as explained above. Assuming you have such a control node provisioned, SSH into the control node and follow the steps below.
 
-1. Start the servers in Azzure.Verify that they are running using the `ping` command from the Jump-Box-Provisioner:
+1. Open the terminal and access jump-box. In this case, we SSH to our Jump-Box-Provisioner.
+2. Start and attach the Ansible container. In this case, we run `sudo docker start elastic_blackburn && sudo docker attach elastic_blackburn`
+3. Start the servers in Azzure.Verify that they are running using the `ping` command from the Jump-Box-Provisioner:
    ![ ](Images/PingVMs.png)
-2. Open the terminal and access jump-box. In this case, we SSH to our Jump-Box-Provisioner.
-3. Start and attach the Ansible container. In this case, we run `sudo docker start elastic_blackburn && sudo docker attach elastic_blackburn`
 4. Copy [Filebeat configuration file](Monitoring/Filebeat/Config-Filebeat) into the Ansible Container: (we created a "files" subfolder) /etc/ansible/files. 
 5. Open the Config-Filebeat with nano and change the IP address (line 1106) with the VM-4 Elk machine:
    ```
