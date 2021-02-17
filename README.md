@@ -2,9 +2,7 @@
 
 The files in this repository were used to configure the network shown below.
 
-![](Images/Network-Azzure.png)
-
-![Network Diagram](Network%Diagram.draw.io)
+![Network Diagram](Images/Network-Azure.png)
 
 After beeing tested, these files were used to generate a live ELK deployment on an Microsoft Azure network, through a Jumpbox provisioner with an Ansible container. These files can be used to recreate the entire deployment pictured above or to install certain pieces of it, such as Filebeat.
 
