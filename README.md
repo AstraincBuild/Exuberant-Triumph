@@ -108,7 +108,7 @@ After installation of Docker we downloaded and run the `sebp/elk:761` container,
 
 We verified the connectivity between the Ansible container (elastic_blackburn) to the new VM-4 machine. We could then verify that the new `elk-docker` was running, using `sudo docker ps`, with the following result:
 
-![ ](LaunchingELK.png)
+![ ](Images/LaunchingELK.png)
 
 A security rule was then created on port `5601` to allow TCP traffic from the Client/User IP address into the new VM-4 Elk server. We verified that the playbook worked by visiting `http://[VM-4.IP]:5601/app/kibana`, using the public address of the new VM-4 machine, which resulted in:
 
@@ -162,15 +162,17 @@ host: 10.1.0.4:5601
     
 9. Run the playbook, and navigate to `http://[VM-4.IP]:5601/app/kibana` to check that the installation worked as expected. In this case, the public IP address of our VM-4 ELK server:
    Click on "Add Log Data": 
-[Images/Kibana-Filebeat.png]
+![ ][Images/Kibana-Filebeat.png]
+
    Click on "Systems Log":
-[Images/Kibana-Filebeat1.png]
+![ ][Images/Kibana-Filebeat1.png]
+
    Scroll down and click on "Check Data" to pull data from the servers, then click on "System Logs Dashboard" to visualize the logs:
-[Images/Kibana-Filebeat2.png]
+![ ][Images/Kibana-Filebeat2.png]
  
 Continue on to install Metricbeat, changing a few of the steps as follows:
-4.Copy [Metricbeat configuration file](Monitoring/Metricbeat/Config-Metricbeat) into the Ansible Container: (we created a "files" subfolder) /etc/ansible/files. 
-Skip step 5 - you already made that change prior to installing Filebeat
+
+4.Copy [Metricbeat configuration file](Monitoring/Metricbeat/Config-Metricbeat) into the Ansible Container: (we created a "files" subfolder) /etc/ansible/files. Skip step 5 - you already made that change prior to installing Filebeat.
 5. Open the Config-Metricbeat with nano and change the IP address (line 1106) with the VM-4 Elk machine:
    ```
    output.elasticsearch:
@@ -188,9 +190,11 @@ host: 10.1.0.4:5601
 8. Skip - it was done for Filebeat.
 9. Run the Playbook and navigate to `http://[VM-4.IP]:5601/app/kibana` using the public IP address of the Elk Server (in our case, VM-4 public IP).
    Click on "Add Metric Data": 
-[Images/Kibana-Metricbeat.png]
+![ ][Images/Kibana-Metricbeat.png]
+
    Click on "Docker Metrics":
-[Images/Kibana-Metricbeat1.png]
+![ ][Images/Kibana-Metricbeat1.png]
+
    Scroll down and click on "Check Data" to pull data from the servers, then click on "Docker Metrics Dashboard" to visualize information about the Elk machine:
-[Images/Kibana-Metricbeat2.png]
+![ ][Images/Kibana-Metricbeat2.png]
 
