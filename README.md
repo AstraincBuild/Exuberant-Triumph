@@ -6,8 +6,6 @@ The files in this repository were used to configure the network shown below.
 
 After beeing tested, these files were used to generate a live ELK deployment on an Microsoft Azure network, through a Jumpbox provisioner with an Ansible container. These files can be used to recreate the entire deployment pictured above or to install certain pieces of it, such as Filebeat.
 
-[Docker Configuration file](Ansible/Config-VM-w-Docker)
-
 This document contains the following details:
 - Description of the Topology
 - Access Policies
@@ -101,7 +99,7 @@ We increased its memory, a requirement for an Elk container:
 ```
 The playbook will then install `docker.io`, `python3-pip`, and `docker`:
 
-Here is the complete playbook [Config and Install ELK with Docker][Ansible/Config-Elk-w-Docker]
+Here is the complete playbook [Docker Configuration file](Ansible/Config-VM-w-Docker)
 
 After installation of Docker we downloaded and run the `sebp/elk:761` container, which had the following published ports:
   * `5601:5601`
@@ -110,7 +108,7 @@ After installation of Docker we downloaded and run the `sebp/elk:761` container,
 
 We verified the connectivity between the Ansible container (elastic_blackburn) to the new VM-4 machine. We could then verify that the new `elk-docker` was running, using `sudo docker ps`, for the following result:
 
-[Images/Launching ELK.png]
+![](Images/Launching%ELK.png)
 
 A security rule was then created on port `5601` to allow TCP traffic from the Client/User IP address into the new VM-4 Elk server. We verified that the playbook worked by visiting `http://[VM-4.IP]:5601/app/kibana`, using the public address of the new VM-4 machine, which resulted in:
 
