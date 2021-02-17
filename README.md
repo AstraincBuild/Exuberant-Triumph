@@ -162,13 +162,13 @@ host: 10.1.0.4:5601
     
 9. Run the playbook, and navigate to `http://[VM-4.IP]:5601/app/kibana` to check that the installation worked as expected. In this case, the public IP address of our VM-4 ELK server:
    Click on "Add Log Data": 
-![ ][Images/Kibana-Filebeat.png]
+![ ](Images/Kibana-Filebeat.png)
 
    Click on "Systems Log":
-![ ][Images/Kibana-Filebeat1.png]
+![ ](Images/Kibana-Filebeat1.png)
 
    Scroll down and click on "Check Data" to pull data from the servers, then click on "System Logs Dashboard" to visualize the logs:
-![ ][Images/Kibana-Filebeat2.png]
+![ ](Images/Kibana-Filebeat2.png)
  
 Continue on to install Metricbeat, changing a few of the steps as follows:
 
@@ -190,11 +190,11 @@ host: 10.1.0.4:5601
 8. Skip - it was done for Filebeat.
 9. Run the Playbook and navigate to `http://[VM-4.IP]:5601/app/kibana` using the public IP address of the Elk Server (in our case, VM-4 public IP).
    Click on "Add Metric Data": 
-![ ][Images/Kibana-Metricbeat.png]
+![ ](Images/Kibana-Metricbeat.png)
 
    Click on "Docker Metrics":
-![ ][Images/Kibana-Metricbeat1.png]
+![ ](Images/Kibana-Metricbeat1.png)
 
    Scroll down and click on "Check Data" to pull data from the servers, then click on "Docker Metrics Dashboard" to visualize information about the Elk machine:
-![ ][Images/Kibana-Metricbeat2.png]
+![ ](Images/Kibana-Metricbeat2.png)
 
