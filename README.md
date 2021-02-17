@@ -2,7 +2,7 @@
 
 The files in this repository were used to configure the network shown below.
 
-![](images/table%201-1.png)
+![](Images/Network-Azzure.png)
 
 ![Network Diagram](Network%Diagram.draw.io)
 
