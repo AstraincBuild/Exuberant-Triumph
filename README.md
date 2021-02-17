@@ -160,7 +160,9 @@ host: 10.1.0.4:5601
     10.1.0.4 
 ```
     
-9. Run the playbook, and navigate to `http://[VM-4.IP]:5601/app/kibana` to check that the installation worked as expected. In this case, the public IP address of our VM-4 ELK server:
+9. Run the playbook, if successful you should see:
+![ ](Images/FilebeatPlaybook.png)
+11. Navigate to `http://[VM-4.IP]:5601/app/kibana` to check that the installation worked as expected. In this case, the public IP address of our VM-4 ELK server:
    Click on "Add Log Data": 
 ![ ](Images/Kibana-Filebeat.png)
 
@@ -188,7 +190,9 @@ host: 10.1.0.4:5601
 ```
 7. Copy the [Metric Playbook](Monitoring/Metricbeat/Metricbeat-Playbook.yml) file to /etc/ansible/roles directory.
 8. Skip - it was done for Filebeat.
-9. Run the Playbook and navigate to `http://[VM-4.IP]:5601/app/kibana` using the public IP address of the Elk Server (in our case, VM-4 public IP).
+9. Run the playbook, if successful you should see:
+![ ](Images/Metricbeatinstalled.png) 
+10. Navigate to `http://[VM-4.IP]:5601/app/kibana` using the public IP address of the Elk Server (in our case, VM-4 public IP).
    Click on "Add Metric Data": 
 ![ ](Images/Kibana-Metricbeat.png)
 
