@@ -107,6 +107,7 @@ In order to use the playbooks, you will need to have an Ansible control node alr
    [elkservers]
     10.1.0.4 
     ```
+    
 5. Run the playbook, and navigate to http://IP-address:5601/app/kibana to check that the installation worked as expected. In this case, the public IP address of our VM-4 ELK server.
 6. Click on "Add Log Data", "Systems Log", scroll down and click on "Check Data" to pull data from the servers, then click on "System Logs Dashboard" to visualize the logs.
  
