@@ -108,7 +108,7 @@ After installation of Docker we downloaded and run the `sebp/elk:761` container,
 
 We verified the connectivity between the Ansible container (elastic_blackburn) to the new VM-4 machine. We could then verify that the new `elk-docker` was running, using `sudo docker ps`, for the following result:
 
-![EXEMPLE](Filebeat%Playbook.png)
+![ ](Filebeat_Playbook.png)
 
 A security rule was then created on port `5601` to allow TCP traffic from the Client/User IP address into the new VM-4 Elk server. We verified that the playbook worked by visiting `http://[VM-4.IP]:5601/app/kibana`, using the public address of the new VM-4 machine, which resulted in:
 
