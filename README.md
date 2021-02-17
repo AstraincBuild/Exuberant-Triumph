@@ -106,13 +106,13 @@ After installation of Docker we downloaded and run the `sebp/elk:761` container,
   * `9200:9200`
   * `5044:5044`
 
-We verified the connectivity between the Ansible container (elastic_blackburn) to the new VM-4 machine. We could then verify that the new `elk-docker` was running, using `sudo docker ps`, for the following result:
+We verified the connectivity between the Ansible container (elastic_blackburn) to the new VM-4 machine. We could then verify that the new `elk-docker` was running, using `sudo docker ps`, with the following result:
 
-![ ](Filebeat_Playbook.png)
+![ ](FilebeatPlaybook.png)
 
 A security rule was then created on port `5601` to allow TCP traffic from the Client/User IP address into the new VM-4 Elk server. We verified that the playbook worked by visiting `http://[VM-4.IP]:5601/app/kibana`, using the public address of the new VM-4 machine, which resulted in:
 
-[Images/Kibana accessed.png]
+![ ](Images/KibanaAccessed.png)
 
 ### Target Machines & Beats
 The VM-4 (ELK server) is configured to monitor the following machines:
@@ -132,10 +132,10 @@ We installed Filebeat and Metricbeat to monitor the  the webserver machines:
 In order to use the playbooks and install Filebeat and Metricbeat monitoring services, you will need to have an Ansible control node already configured, as explained above. Assuming you have such a control node provisioned, SSH into the control node and follow the steps below.
 
 1. Start the servers in Azzure.Verify that they are running using the `ping` command from the Jump-Box-Provisioner:
-   [Images/Ping VMs.png]
+   ![ ](Images/PingVMs.png)
 2. Open the terminal and access jump-box. In this case, we SSH to our Jump-Box-Provisioner.
 3. Start and attach the Ansible container. In this case, we run `sudo docker start elastic_blackburn && sudo docker attach elastic_blackburn`
-4. Copy Filebeat configuration file (../Monitoring/Filebeat/Config-Filebeat) into the Ansible Container: (we created a "files" subfolder) /etc/ansible/files. 
+4. Copy [Filebeat configuration file](Monitoring/Filebeat/Config-Filebeat) into the Ansible Container: (we created a "files" subfolder) /etc/ansible/files. 
 5. Open the Config-Filebeat with nano and change the IP address (line 1106) with the VM-4 Elk machine:
    ```
    output.elasticsearch:
@@ -149,7 +149,7 @@ In order to use the playbooks and install Filebeat and Metricbeat monitoring ser
 setup.kibana:
 host: 10.1.0.4:5601
 ```
-7. Copy the [Filebeat Playbook](../Monitoring/Filebeat/Filebeat-Playbook.yml) file to /etc/ansible/roles directory. Note that in this case, we had a "roles" subfolder to hold playbooks.
+7. Copy the [Filebeat Playbook](Monitoring/Filebeat/Filebeat-Playbook.yml) file to /etc/ansible/roles directory. Note that in this case, we had a "roles" subfolder to hold playbooks.
 8. Update the "hosts" file to include the internal/private IP addresses of servers. This will make Ansible run the playbook on the specified machines. In this case, we assigned each server to their server groups as follows:
 ```
    [webservers]
@@ -162,14 +162,14 @@ host: 10.1.0.4:5601
     
 9. Run the playbook, and navigate to `http://[VM-4.IP]:5601/app/kibana` to check that the installation worked as expected. In this case, the public IP address of our VM-4 ELK server:
    Click on "Add Log Data": 
-[Images/Kibana-Filebeat]
+[Images/Kibana-Filebeat.png]
    Click on "Systems Log":
-[Images/Kibana-Filebeat1]
+[Images/Kibana-Filebeat1.png]
    Scroll down and click on "Check Data" to pull data from the servers, then click on "System Logs Dashboard" to visualize the logs:
-[Images/Kibana-Filebeat2]
+[Images/Kibana-Filebeat2.png]
  
 Continue on to install Metricbeat, changing a few of the steps as follows:
-4.Copy Metricbeat configuration file (../Monitoring/Metricbeat/Config-Metricbeat) into the Ansible Container: (we created a "files" subfolder) /etc/ansible/files. 
+4.Copy [Metricbeat configuration file](Monitoring/Metricbeat/Config-Metricbeat) into the Ansible Container: (we created a "files" subfolder) /etc/ansible/files. 
 Skip step 5 - you already made that change prior to installing Filebeat
 5. Open the Config-Metricbeat with nano and change the IP address (line 1106) with the VM-4 Elk machine:
    ```
@@ -184,13 +184,13 @@ Skip step 5 - you already made that change prior to installing Filebeat
 setup.kibana:
 host: 10.1.0.4:5601
 ```
-7. Copy the [Metric Playbook](../Monitoring/Metricbeat/Metricbeat-Playbook.yml) file to /etc/ansible/roles directory.
+7. Copy the [Metric Playbook](Monitoring/Metricbeat/Metricbeat-Playbook.yml) file to /etc/ansible/roles directory.
 8. Skip - it was done for Filebeat.
 9. Run the Playbook and navigate to `http://[VM-4.IP]:5601/app/kibana` using the public IP address of the Elk Server (in our case, VM-4 public IP).
    Click on "Add Metric Data": 
-[Images/Kibana-Metricbeat]
+[Images/Kibana-Metricbeat.png]
    Click on "Docker Metrics":
-[Images/Kibana-Metricbeat1]
+[Images/Kibana-Metricbeat1.png]
    Scroll down and click on "Check Data" to pull data from the servers, then click on "Docker Metrics Dashboard" to visualize information about the Elk machine:
-[Images/Kibana-Metricbeat2]
+[Images/Kibana-Metricbeat2.png]
 
